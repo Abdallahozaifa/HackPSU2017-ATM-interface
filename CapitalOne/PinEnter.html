@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Stylesheet
+    ================================================== -->
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <title>Capital One ATM Interface</title>
+</head>
+
+<body>
+  <img class="ATM-Pic" src="Assets/ATM-PinEnter.jpg" style="width: 878px; height: 976px;">
+
+  <button class="pinEnter-button" onclick="OldUILink()">CLICK HERE</button>
+
+
+  <input class="pinField" type="text" name="cardPin">
+
+  <script>
+    // function OldUILink() {
+    //   console.log(document);
+    //   window.location = "/OldUI.html";
+    // }
+    var pinBtn = $(".pinEnter-button");
+    
+    pinBtn.click(function(){
+      var pinNumbers = $(".pinField");
+      pinNumbers = pinNumbers.val();
+      console.log(pinNumbers);
+    });
+  </script>
+
+</body>
+
+</html>

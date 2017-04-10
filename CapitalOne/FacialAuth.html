@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Stylesheet
+    ================================================== -->
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <title>Capital One ATM Interface</title>
+  <script src="/tracking-min.js"></script>
+  <script src="/face-min.js"></script>
+  <script src="/dat.gui.min.js"></script>
+  <style>
+    video,
+    canvas {
+      margin-left: 10px;
+      margin-top: 80px;
+      /*position: absolute;*/
+    }
+  </style>
+</head>
+
+<body>
+  <img class="ATM-Pic" src="Assets/ATM-FacialAuth.jpg" style="width: 878px; height: 976px;">
+
+  <div class="demo-frame">
+    <div class="demo-container">
+      <video id="video" width="640" height="480" autoplay></video>
+      <canvas id="canvas" width="640" height="480"></canvas>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    </div>
+  </div>
+
+  <a href="#" class="button" id="btn-download">Download</a>
+  <script>
+    window.onload = function() {
+      var video = document.getElementById('video');
+      var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+      var tracker = new tracking.ObjectTracker('face');
+      tracker.setInitialScale(4);
+      tracker.setStepSize(2);
+      tracker.setEdgesDensity(0.1);
+      var trackerTask = tracking.track('#video', tracker, {
+        camera: true
+      });
+      var faceCaptured = false;
+      var button = document.getElementById('btn-download');
+
+      tracker.on('track', function(event) {
+        if (event.data.length == 0) {
+          console.log("Searching for face!!!");
+          if (faceCaptured == true) {
+            trackerTask.stop();
+          }
+        }
+        else {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          //console.log(event);
+          event.data.forEach(function(rect) {
+            context.strokeStyle = '#a64ceb';
+            context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+            context.font = '11px Helvetica';
+            context.fillStyle = "#fff";
+            context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+            context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+            context.drawImage(video, 0, 0, 640, 480);
+            var dataURL = canvas.toDataURL('image/png');
+            button.href = dataURL;
+            faceCaptured = true;
+            //video.pause();
+            video.src = "";
+            context.strokeStyle = '#a64ceb';
+            context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+            context.font = '11px Helvetica';
+            context.fillStyle = "#fff";
+            context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+            context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+            console.log("Tracking Face!!!:)");
+            dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+            var blobFile = b64toBlob(dataURL, 'image/png');
+            var data = new FormData();
+            data.append("image_data", dataURL);
+            //console.log(data.get("image_data"));
+            $.ajax({
+              url: "/sendImage",
+              type: "POST",
+              data: data,
+              processData: false,
+              contentType: false
+            }).done(function(result) {
+              console.log(result);
+              if (result.status == "Facial Recognition Authorization Failed, Please try again!") {
+                console.log(video);
+                tracking.track('#video', tracker, {
+                  camera: true
+                });
+              }
+              else {
+                trackerTask.stop();
+              }
+            });
+          });
+        }
+
+      });
+
+    };
+
+    function b64toBlob(b64Data, contentType, sliceSize) {
+      contentType = contentType || '';
+      sliceSize = sliceSize || 512;
+
+      var byteCharacters = atob(b64Data);
+      var byteArrays = [];
+
+      for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+          byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        var byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+      }
+
+      var blob = new Blob(byteArrays, {
+        type: contentType
+      });
+      return blob;
+    }
+  </script>
+
+</body>
+
+</html>

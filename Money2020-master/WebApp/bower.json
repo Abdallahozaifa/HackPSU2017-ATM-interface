@@ -1,0 +1,23 @@
+{
+  "name": "brickhacks-2",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Yehya <yehyaawad.kip@gmail.com> (http://yehyaawad.com/)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/awadYehya/BrickHacks-II",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcamjs-bower": "^1.0.0",
+    "pure": "^0.6.0",
+    "skeleton": "^2.0.4"
+  }
+}

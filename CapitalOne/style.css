@@ -1,0 +1,73 @@
+body{
+    background-color: black; 
+    width: 1755px;
+    height: 976px; 
+}
+
+.container{
+    background-image: url("/Users/fernandocarrillo/Desktop/CapitalOne-ATM-UI/Assets/ATM-Welcome.jpg");
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
+
+.ATM-Pic{
+    display: block;
+    margin: 0px auto;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.card-button{
+    
+    position: absolute;
+    top: 73%;
+    left: 38%; 
+    width: 300px; 
+    height: 25px;
+    background: transparent;
+    border: none !important;
+    font-size:0;
+    cursor: pointer;
+}
+
+.smartphone-button{
+    
+    position: absolute;
+    top: 81%;
+    left: 38%; 
+    width: 300px; 
+    height: 25px; 
+    background: transparent;
+    border: none !important;
+    font-size:0;
+    cursor: pointer; 
+}
+
+.pinEnter-button{
+    
+    position: absolute;
+    top: 68.5%;
+    left: 50%; 
+    width: 70px; 
+    height: 25px; 
+    background: transparent;
+    border: none !important;
+    font-size:0;
+    cursor: pointer; 
+}
+
+.pinField{
+    position: absolute;
+    top: 68.4%;
+    left: 41%; 
+    width: 158px;
+    height: 22px; 
+}
+
+#video, #canvas{
+    position: absolute; 
+    top: 68.1%;
+    left: 34.0%;
+}

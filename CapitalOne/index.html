@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Capital One ATM Interface</title>
+    <script src="/tracking-min.js"></script>
+    <script src="/face-min.js"></script>
+    <script src="/dat.gui.min.js"></script>
+  </head>
+    
+  <body>
+       <img class="ATM-Pic" src="Assets/ATM-Welcome.jpg" style="width: 878px; height: 976px;">
+      
+      <button class="card-button" onclick="cardLink()">CLICK HERE</button>
+      <button class="smartphone-button" onclick="phoneLink()">CLICK HERE</button>
+      
+              
+<script>
+function cardLink() {
+    console.log(document);
+    window.location = "/PinEnter.html";
+}
+
+function phoneLink() {
+    console.log(document);
+    window.location = "/SmartPinEnter.html";
+}
+      
+</script>
+       
+  </body>
+    
+</html>

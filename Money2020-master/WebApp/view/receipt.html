@@ -1,0 +1,379 @@
+<html>
+
+    <head>
+        <title>Receipt</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" type="text/css" />
+        <style type="text/css">
+            html {
+                background: url(../assets/bg-pattern.png),linear-gradient(to left,#7b4397,#dc2430);
+                
+                font-family: 'Roboto Slab';
+                font-weight: 300;
+                -webkit-font-smoothing: antialiased;
+                -moz-font-smoothing: antialiased;
+                text-rendering: optimizelegibility;
+            }
+            
+            body {
+                margin: 0 auto;
+                padding: 0;
+                /*background-color: #EFE8E2;*/
+                font-family: tahoma;
+            }
+            
+            .paid {
+                display: none;
+                width: 300px;
+                margin: 0 auto;
+                background-color: #fff;
+                text-align: center;
+                padding-top: 25px;
+                border-radius: 0px 0px 10px 10px;
+                padding-bottom: 25px;
+                color: #00773D;
+                line-height: 30px;
+            }
+            
+            .paid p {
+                background-image: url("http://dc455.4shared.com/download/VILITso0/tsid20130720-183900-9216b81f/check.png");
+                background-repeat: no-repeat;
+                background-position: left center;
+                padding-left: 30px;
+                width: 190px;
+                margin: 0 auto;
+            }
+            
+            .container {
+                width: 350px;
+                margin: 50px auto;
+            }
+            
+            .tab {
+                width: 350px;
+                margin: 0 auto;
+                height: 10px;
+                background-color: #2B2929;
+                border-radius: 50px;
+                opacity: 0;
+                transition: all 0.8s ease-in-out;
+            }
+            
+            .receipt {
+                transition: all 1.2s ease-in-out;
+                opacity: 0;
+                background-color: #FAFAF9;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                width: 300px;
+                height: auto;
+                margin: -120% auto;
+                border-radius: 5px 5px 50px 50px;
+                -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            .paper {
+                border-top: 1px dashed #ccc;
+                width: 96%;
+                margin: 0 auto;
+            }
+            
+            .title {
+                color: #00773D;
+                margin-top: 20px;
+                margin-left: 10px;
+                font-weight: bold;
+                float: left;
+                font-size: 16px;
+                line-height: 30px;
+            }
+            
+            .date {
+                color: #00773D;
+                margin-top: 20px;
+                margin-right: 10px;
+                font-weight: lighter;
+                float: right;
+                font-size: 12px;
+                line-height: 30px;
+            }
+            
+            table {
+                clear: both;
+                width: 95%;
+                margin: 0 auto;
+                color: #5B5B5B;
+                font-size: 12px;
+                padding-top: 10px;
+            }
+            
+            .right {
+                text-align: right;
+                padding-right: 10px;
+            }
+            
+            .center {
+                text-align: center;
+                padding-top: 20px;
+            }
+            
+            input[type=button] {
+                background-color: #00874C;
+                outlie: none;
+                border: 1px solid #ccc;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+                color: #fff;
+                padding-left: 30px;
+                background-image: url("http://dc707.4shared.com/img/zr6_o80l/s3/13ffd4de138/cart.png");
+                background-repeat: no-repeat;
+                background-position: 5px center;
+            }
+            
+            input[type=button]:hover {
+                -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                cursor: pointer;
+                color: #f0f0f0;
+            }
+            
+            .barcode {
+                height: 20px;
+                width: 0;
+                box-shadow: 1px 0 0 1px #343434, 5px 0 0 1px #343434, 10px 0 0 1px #343434, 11px 0 0 1px #343434, 15px 0 0 1px #343434, 18px 0 0 1px #343434, 22px 0 0 1px #343434, 23px 0 0 1px #343434, 26px 0 0 1px #343434, 30px 0 0 1px #343434, 35px 0 0 1px #343434, 37px 0 0 1px #343434, 41px 0 0 1px #343434, 44px 0 0 1px #343434, 47px 0 0 1px #343434, 51px 0 0 1px #343434, 56px 0 0 1px #343434, 59px 0 0 1px #343434, 64px 0 0 1px #343434, 68px 0 0 1px #343434, 72px 0 0 1px #343434, 74px 0 0 1px #343434, 77px 0 0 1px #343434, 81px 0 0 1px #343434;
+                display: inline-block;
+                margin-right: 85px;
+                margin-top: 13px;
+            }
+            
+            .sign {
+                text-align: center;
+            }
+            
+            .thankyou {
+                line-height: 14px;
+                font-size: 10px;
+                margin-top: 5px;
+                color: #5B5B5B;
+                width: 100%;
+            }
+            
+            .left {
+                float: left;
+                text-align: left;
+                padding-left: 10px;
+            }
+            
+            pre {
+                position: fixed;
+                right: 0px;
+            }
+            
+            .fix {
+                margin-top: 125px;
+                position: fixed;
+                margin-left: 10%;
+            }
+            
+            .six {
+                margin-top: 55px;
+            }
+            
+            @font-face {
+                font-family: 'icomoon';
+                src: url('http://s3.amazonaws.com/icomoon.io/4/Loading/icomoon.eot?-9haulc');
+                src: url('http://s3.amazonaws.com/icomoon.io/4/Loading/icomoon.eot?#iefix-9haulc') format('embedded-opentype'), url('http://s3.amazonaws.com/icomoon.io/4/Loading/icomoon.woff?-9haulc') format('woff'), url('http://s3.amazonaws.com/icomoon.io/4/Loading/icomoon.ttf?-9haulc') format('truetype'), url('http://s3.amazonaws.com/icomoon.io/4/Loading/icomoon.svg?-9haulc#icomoon') format('svg');
+                font-weight: normal;
+                font-style: normal;
+            }
+            
+            [class^="icon-"],
+            [class*=" icon-"] {
+                font-family: 'icomoon';
+                speak: none;
+                font-style: normal;
+                font-weight: normal;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                /* Better Font Rendering =========== */
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+            
+            .icon-spinner:before {
+                content: "\e000";
+            }
+            
+            .icon-spinner-2:before {
+                content: "\e001";
+            }
+            
+            .icon-spinner-3:before {
+                content: "\e002";
+            }
+            
+            .icon-spinner-4:before {
+                content: "\e003";
+            }
+            
+            .icon-spinner-5:before {
+                content: "\e004";
+            }
+            
+            .icon-spinner-6:before {
+                content: "\e005";
+            }
+            
+            .icon-spinner-7:before {
+                content: "\e006";
+            }
+            
+            @keyframes anim-rotate {
+                0% {
+                    transform: rotate(0);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            
+            .spinner {
+                position: absolute;
+                display: inline-block;
+                font-size: 9em;
+                height: 1em;
+                line-height: 1;
+                margin: 45px 0 0 980px;
+                animation: anim-rotate 2s infinite linear;
+                color: #fff;
+                text-shadow: 0 0 .25em rgba(255, 255, 255, .3);
+                text-align: center;
+                transition: all 0.9s ease-in-out;
+                opacity: 0;
+            }
+            
+            .spinner--steps {
+                animation: anim-rotate 1s infinite steps(8);
+            }
+            
+            .spinner--steps2 {
+                animation: anim-rotate 1s infinite steps(12);
+            }
+            
+            .text {
+                display: inline-block;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 100;
+                font-size: 50px;
+                line-height: 58px;
+                color: #fff;
+                padding: 0 10px;
+            }
+            
+            .notice {
+                width: 80%;
+                height: 250px;
+                background-color: rgba(0, 0, 0, 0.3);
+                margin: 10% auto;
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="row">
+            <div class="notice">
+                <span class="fix text" id="information"></span>
+                <div class="spinner icon-spinner-2" aria-hidden="true"></div>
+                <div class="fix six columns text" id="status">No Transaction</div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="tab"></div>
+            <div class="paid">
+                <p>Receipt</p>
+            </div>
+            <div class="receipt">
+                <div class="paper">
+                    <div class="title">Receipt</div>
+                    <div class="date"></div>
+                    <div class="date req_id"></div>
+                    <div class="date order_id"></div>
+                    <div class="date stats_id"></div>
+                    <div class="date trans_id"></div>
+                    <table>
+                        <td></td>
+                    </table>
+                    <div class="sign center">
+
+                        <div class="left">Total</div>
+                        <div class="right total"></div>
+
+                        <div class="barcode"></div>
+                        <br/> 0123456789
+                        <br/>
+                        <div class="thankyou">
+                            Thank you for your business
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var counter = 0;
+        setInterval(function () {
+            if (counter % 2 == 0) {
+                $('#information').html('Checking status of transaction...');
+                $(".spinner").css("opacity", "1");
+            }
+            else {
+                $('#information').html("&nbsp");
+                $(".spinner").css("opacity", "0");
+            }
+            counter++;
+            console.log(counter);
+        }, 1500);
+
+        setInterval(function () {
+            $.ajax({
+                url: '/transStatus',
+                type: 'get',
+                success: function (data) {
+                    if (data.result) {
+                        $('#information').css("display", "none");
+                        $('#status').removeClass("text");
+                        $('.notice').css("width", "300px");
+                        $('.notice').css("height", "100px");
+                        $('.notice').css("margin", "0");
+                        $('.notice').css("position", "absolute");
+                        $('.notice').css("background-color", "rgba(0,0,0,0)");
+                        $('.spinner').css("display", "none");
+                        $('#status').html("Transaction Made Successfully</br><pre>" + JSON.stringify(data.transData, null, 2) + "</pre>");
+                        $('.date').html("Transaction Time: " + data.transData.litleOnlineResponse.saleResponse.responseTime);
+                        $('.req_id').html("Sales ID: " + data.transData.litleOnlineResponse.saleResponse["@id"]);
+                        $('.order_id').html("Order ID: " + data.transData.litleOnlineResponse.saleResponse.orderId);
+                        $('.total').html(data.transData.amount);
+                        $('.stats_id').html(data.transData.litleOnlineResponse.saleResponse.message);
+                        $('.trans_id').html(data.transData.litleOnlineResponse.saleResponse.TransactionID);
+                        $('.tab').css("opacity", "1");
+                        $('.receipt').css("opacity", "1");
+                        $('.receipt').css("margin", "-5px auto");
+                        return;
+                    }
+                    else {
+                        $('#status').text("No Transaction");
+                    }
+                }
+            })
+        }, 500);
+    </script>
+
+
+</html>
