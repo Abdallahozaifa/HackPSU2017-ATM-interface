@@ -1,5 +1,0 @@
-[33m[nodemon] 1.11.0[39m
-[33m[nodemon] to restart at any time, enter `rs`[39m
-[33m[nodemon] watching: *.*[39m
-[32m[nodemon] starting `node server.js`[39m
-https://bigmoney2020-abdallahozaifa.c9users.io/
