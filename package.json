@@ -1,0 +1,28 @@
+{
+  "name": "atm-hackpsu",
+  "version": "1.0.0",
+  "description": "hack psu atm idea",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdallahozaifa/HackPSU2017-ATM-interface.git"
+  },
+  "author": "Hozaifa Abdalla, Daniel Lopez, Fernando Carrillo, Aidan Chaviatti, Brandon Bench",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Abdallahozaifa/HackPSU2017-ATM-interface/issues"
+  },
+  "homepage": "https://github.com/Abdallahozaifa/HackPSU2017-ATM-interface#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bower": "^1.8.0",
+    "express": "^4.15.3",
+    "fs": "0.0.1-security",
+    "multer": "^1.3.0",
+    "path": "^0.12.7",
+    "project-oxford": "^1.8.0"
+  }
+}

@@ -6,7 +6,11 @@ var oxford = require('project-oxford'),
     client = new oxford.Client('83417845d20f48d5aa832b5589f34894');
 var path = require('path');
 
-app.use('/css', express.static('css'));
+app.use('/CapitalOne', express.static('CapitalOne'));
+app.use('/tracking-min.js', express.static('bower_components/tracking/build/tracking-min.js'));
+app.use('/face-min.js', express.static('bower_components/tracking/build/data/face-min.js'));
+app.use('/dat.gui.min.js', express.static('bower_components/dat-gui/build/dat.gui.min.js'));
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
